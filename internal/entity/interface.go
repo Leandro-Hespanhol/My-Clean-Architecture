@@ -5,3 +5,4 @@ type OrderRepositoryInterface interface {
 	FindAll() ([]*Order, error)
 	GetTotal() (int, error)
 }
+

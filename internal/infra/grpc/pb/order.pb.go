@@ -470,3 +470,4 @@ func file_proto_order_proto_init() {
 	file_proto_order_proto_rawDesc = nil
 	file_proto_order_proto_goTypes = nil
 }
+

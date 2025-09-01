@@ -30,3 +30,4 @@ func (e *OrderCreated) SetPayload(payload interface{}) {
 func (e *OrderCreated) GetDateTime() time.Time {
 	return e.DateTime
 }
+

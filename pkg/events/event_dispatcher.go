@@ -63,3 +63,4 @@ func (ed *EventDispatcher) Remove(eventName string, handler EventHandlerInterfac
 	}
 	return errors.New("handler not found")
 }
+

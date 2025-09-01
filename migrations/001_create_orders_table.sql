@@ -5,3 +5,4 @@ CREATE TABLE IF NOT EXISTS orders (
     final_price DECIMAL(10,2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+

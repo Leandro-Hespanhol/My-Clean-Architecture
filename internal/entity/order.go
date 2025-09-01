@@ -44,3 +44,4 @@ func (o *Order) CalculateFinalPrice() error {
 	}
 	return nil
 }
+

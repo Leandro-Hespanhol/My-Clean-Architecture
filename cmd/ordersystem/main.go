@@ -1,9 +1,7 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
-
 	"net/http"
 
 	"MyCleanArchitecture/configs"
@@ -35,8 +33,8 @@ func main() {
 	// }
 	// defer db.Close()
 
-	// Using nil for now - you'll need to implement an in-memory repository or connect to a real database
-	var db *sql.DB = nil
+	// Using in-memory repository for testing
+	// var db *sql.DB = nil
 
 	// rabbitMQChannel := getRabbitMQChannel()
 
@@ -45,7 +43,7 @@ func main() {
 	// 	RabbitMQChannel: rabbitMQChannel,
 	// })
 
-	orderRepository := database.NewOrderRepository(db)
+	orderRepository := database.NewMemoryOrderRepository()
 	orderCreatedEvent := event.NewOrderCreated()
 
 	createOrderUseCase := usecase.NewCreateOrderUseCase(orderRepository, orderCreatedEvent, eventDispatcher)

@@ -32,3 +32,4 @@ service OrderService {
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
   rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse);
 }
+
