@@ -28,9 +28,6 @@ func (s *WebServer) AddHandler(path string, method string, handler http.HandlerF
 	s.Handlers[path][method] = handler
 }
 
-// Loop through the handlers and add them to the router
-// register middleware logger
-// start the server
 func (s *WebServer) Start() {
 	s.Router.Use(middleware.Logger)
 	for path, methods := range s.Handlers {
@@ -49,4 +46,3 @@ func (s *WebServer) Start() {
 	}
 	http.ListenAndServe(":"+s.WebServerPort, s.Router)
 }
-

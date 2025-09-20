@@ -30,10 +30,10 @@ func (h *OrderCreatedHandler) Handle(event events.EventInterface, wg *sync.WaitG
 	}
 
 	h.RabbitMQChannel.Publish(
-		"amq.direct", // exchange
-		"",           // routing key
-		false,        // mandatory
-		false,        // immediate
-		msgRabbitmq,  // message to publish
+		"amq.direct",
+		"",
+		false,
+		false,
+		msgRabbitmq,
 	)
 }

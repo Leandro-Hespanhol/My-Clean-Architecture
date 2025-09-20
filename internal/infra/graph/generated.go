@@ -27,7 +27,5 @@ type QueryResolver interface {
 }
 
 func NewExecutableSchema(cfg Config) graphql.ExecutableSchema {
-	// This is a simplified version for demonstration
-	// In a real project, you would use gqlgen to generate this properly
 	return nil
 }

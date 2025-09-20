@@ -22,7 +22,6 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	// mysql
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -38,7 +37,6 @@ func main() {
 	}
 	defer db.Close()
 
-	// Test database connection
 	err = db.Ping()
 	if err != nil {
 		panic(fmt.Sprintf("Failed to connect to database: %v", err))
@@ -48,19 +46,12 @@ func main() {
 	// rabbitMQChannel := getRabbitMQChannel()
 
 	eventDispatcher := events.NewEventDispatcher()
-	// eventDispatcher.Register("OrderCreated", &handler.OrderCreatedHandler{
-	// 	RabbitMQChannel: rabbitMQChannel,
-	// })
 
 	orderRepository := database.NewOrderRepository(db)
 	orderCreatedEvent := event.NewOrderCreated()
 
 	createOrderUseCase := usecase.NewCreateOrderUseCase(orderRepository, orderCreatedEvent, eventDispatcher)
 	listOrdersUseCase := usecase.NewListOrdersUseCase(orderRepository)
-
-	// Use the variables to avoid "declared and not used" errors
-	_ = createOrderUseCase
-	_ = listOrdersUseCase
 
 	webserver := webserver.NewWebServer(configs.WebServerPort)
 	webOrderHandler := web.NewWebOrderHandler(eventDispatcher, orderRepository, orderCreatedEvent)
@@ -69,7 +60,6 @@ func main() {
 	fmt.Println("Starting web server on port", configs.WebServerPort)
 	go webserver.Start()
 
-	// gRPC Server
 	grpcServer := grpc.NewServer()
 	orderService := service.NewOrderService(*createOrderUseCase, *listOrdersUseCase)
 	pb.RegisterOrderServiceServer(grpcServer, orderService)
@@ -82,7 +72,6 @@ func main() {
 	}
 	go grpcServer.Serve(lis)
 
-	// GraphQL Server (simplified implementation)
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		html := `<!DOCTYPE html>
 <html>
@@ -157,9 +146,7 @@ query {
 
 		w.Header().Set("Content-Type", "application/json")
 
-		// Simple GraphQL query parsing
 		if req.Query == "query { orders { id price tax finalPrice } }" {
-			// List orders
 			output, err := listOrdersUseCase.Execute()
 			if err != nil {
 				json.NewEncoder(w).Encode(map[string]interface{}{
@@ -176,7 +163,6 @@ query {
 				},
 			})
 		} else if req.Query[:8] == "mutation" && req.Variables != nil {
-			// Create order mutation
 			if input, ok := req.Variables["input"].(map[string]interface{}); ok {
 				dto := usecase.OrderInputDTO{
 					ID:    input["id"].(string),
