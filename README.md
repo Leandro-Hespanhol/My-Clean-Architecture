@@ -145,14 +145,9 @@ go run cmd/ordersystem/main.go
 
 O projeto inclui um arquivo `api/orders.http` com exemplos de requisições para todas as APIs. Você pode usar extensões como REST Client no VS Code para executar essas requisições.
 
-### Nota sobre GraphQL
+### GraphQL Playground
 
-Para uma implementação completa do GraphQL, você deve executar:
-```bash
-go run github.com/99designs/gqlgen generate
-```
-
-Isso irá gerar os arquivos necessários baseados no schema GraphQL. Para este projeto de demonstração, o endpoint GraphQL retorna mensagens simples.
+O GraphQL está totalmente implementado e funcional. Acesse o GraphQL Playground em http://localhost:8080/ para testar as queries e mutations interativamente.
 
 ### Exemplos de Uso
 

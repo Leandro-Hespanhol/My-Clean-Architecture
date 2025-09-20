@@ -4,3 +4,5 @@ Starting GraphQL server on port 8080
 2025/09/01 00:06:46 "GET http://localhost:8000/order HTTP/1.1" from [::1]:61479 - 200 5B in 154.375µs
 2025/09/01 00:06:53 "POST http://localhost:8000/order HTTP/1.1" from [::1]:61485 - 200 93B in 58.667µs
 2025/09/01 00:07:02 "POST http://localhost:8000/order HTTP/1.1" from [::1]:61490 - 200 106B in 32.458µs
+2025/09/01 00:07:27 "GET http://localhost:8000/order HTTP/1.1" from [::1]:61523 - 200 201B in 64.417µs
+signal: terminated
